@@ -27,7 +27,13 @@ namespace Stegoanalysis
 
         private void SetAnsName(int image)
         {
-            AnsTB.Text = $"Информация зашита в {types[image - 1]} изображении.";
+            if (SelectFirstLink.Content.ToString().Contains(".bmp"))
+                if(image == 1)
+                    image++;
+                else
+                    image--;
+                
+            AnsTB.Text = $"Информация зашита {types[image - 1]} изображении - {(image == 1 ? SelectFirstLink.Content.ToString() : SelectSecondLink.Content.ToString())}.";
         }
 
         public MainWindow()

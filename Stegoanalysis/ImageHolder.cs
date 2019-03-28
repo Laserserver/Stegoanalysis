@@ -53,10 +53,12 @@ namespace Stegoanalysis
                 if(first)
                 {
                     _first = new Bitmap(outStream);
+                    _firstChannels = new List<Bitmap>();
                 }
                 else
                 {
                     _second = new Bitmap(outStream);
+                    _secondChannels = new List<Bitmap>();
                 }
             }
         }
