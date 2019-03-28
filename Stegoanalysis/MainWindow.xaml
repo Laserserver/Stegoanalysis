@@ -5,8 +5,195 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stegoanalysis"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Стегоанализ" Height="700" Width="1050" MinHeight="700" MinWidth="1050" FontFamily="Comic Sans MS"> 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
         
+        <TabControl>
+            <TabItem FontSize="16" Header="Начальные значения">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Первое изображение</TextBlock>
+                        <Button Grid.Row="1" Name="SelectFirstLink" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="16" Padding="5" Click="SelectFirstLink_Click">Выбор файла</Button>
+
+                        <Border Grid.Row="2" Margin="10, 10, 5, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="FirstImage"/>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Второе изображение</TextBlock>
+                        <Button Grid.Row="1" Name="SelectSecondLink" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="16" Padding="5" Click="SelectSecondLink_Click">Выбор файла</Button>
+
+                        <Border Grid.Row="2" Margin="5, 10, 10, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="SecondImage"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Name="R" Visibility="Hidden" FontSize="16" Header="R-канал">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Первое изображение: Красный канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="10, 10, 5, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="FirstImageR"/>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Второе изображение: Красный канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="5, 10, 10, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="SecondImageR"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+
+            </TabItem>
+            <TabItem Name="G" Visibility="Hidden" FontSize="16" Header="G-канал">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Первое изображение: Зеленый канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="10, 10, 5, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="FirstImageG"/>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Второе изображение: Зеленый канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="5, 10, 10, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="SecondImageG"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem Name="B" Visibility="Hidden" FontSize="16" Header="B-канал">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Первое изображение: Синий канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="10, 10, 5, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="FirstImageB"/>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="18">Второе изображение: Синий канал</TextBlock>
+
+                        <Border Grid.Row="1" Margin="5, 10, 10, 10" Background="#DDDDDD" BorderBrush="Black" BorderThickness="2">
+                            <Image Name="SecondImageB"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" MinWidth="420"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16">Ширина блока: </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16">Высота блока: </TextBlock>
+                <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16">Уровень значимости: </TextBlock>
+
+                <TextBox Grid.Column="1" Grid.Row="0" Name="WidthTB" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" Width="100">64</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" Name="HeightTB" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" Width="100">64</TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" Name="AlphaTB" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10" FontSize="16" Width="100">0,9</TextBox>
+            </Grid>
+            
+            <Button Grid.Column="1" Name="Go" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="20" Padding="5" Click="Button_Click" IsEnabled="False">Расчет</Button>
+            <TextBlock Name="AnsTB" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" FontSize="20" Padding="5"></TextBlock>
+        </Grid>
     </Grid>
 </Window>

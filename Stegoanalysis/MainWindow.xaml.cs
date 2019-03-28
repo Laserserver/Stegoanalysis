@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Stegoanalysis
 {
@@ -20,9 +21,87 @@ namespace Stegoanalysis
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly string[] types = {"в 1", "во 2"};
+        private bool first = false;
+        private bool second = false;
+
+        private void SetAnsName(int image)
+        {
+            AnsTB.Text = $"Информация зашита в {types[image - 1]} изображении.";
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var t = Analyzer.Instance.Analyze(WidthTB.Text, HeightTB.Text, AlphaTB.Text);
+            SetAnsName(t.Item1);
+            var images = t.Item2;
+            FirstImageR.Source = images[0];
+            SecondImageR.Source = images[1];
+            R.Visibility = Visibility.Visible;
+            FirstImageG.Source = images[2];
+            SecondImageG.Source = images[3];
+            G.Visibility = Visibility.Visible;
+            FirstImageB.Source = images[4];
+            SecondImageB.Source = images[5];
+            B.Visibility = Visibility.Visible;
+        }
+
+        private Tuple<BitmapImage, string> GetImage()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() != true)
+            {
+                return null;
+            }
+
+            BitmapImage bi3 = new BitmapImage();
+            try
+            {
+                bi3.BeginInit();
+                bi3.UriSource = new Uri(ofd.FileName);
+                bi3.EndInit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex);
+            }
+
+            return Tuple.Create(bi3, ofd.FileName.Split('\\').Last());
+        }
+
+        private void SelectFirstLink_Click(object sender, RoutedEventArgs e)
+        {
+            
+            var bi3 = GetImage();
+            if (bi3 == null)
+                return;
+            FirstImage.Source = bi3.Item1;
+            ImageHolder.Instance.BitmapImage2Bitmap(bi3.Item1, true);
+
+            SelectFirstLink.Content = bi3.Item2;
+
+            if (second)
+                Go.IsEnabled = true;
+            first = true;
+        }
+
+        private void SelectSecondLink_Click(object sender, RoutedEventArgs e)
+        {
+            var bi3 = GetImage();
+            if (bi3 == null)
+                return;
+            SecondImage.Source = bi3.Item1;
+            ImageHolder.Instance.BitmapImage2Bitmap(bi3.Item1, false);
+
+            SelectSecondLink.Content = bi3.Item2;
+            if (first)
+                Go.IsEnabled = true;
+            second = true;
         }
     }
 }
