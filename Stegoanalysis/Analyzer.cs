@@ -41,7 +41,7 @@ namespace Stegoanalysis
         }
 
 
-        public Tuple<int, List<BitmapImage>> Analyze(string width, string height, string alpha)
+        public (int, List<BitmapImage>) Analyze(string width, string height, string alpha)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Stegoanalysis
                 throw new Exception("Неверный формат " + e.Message);
             }
 
-            Bitmap[] btms = ImageHolder.Instance.GetImages();
+            var btms = ImageHolder.Instance.GetImages();
             if (btms[0].Width != btms[1].Width)
                 throw new Exception("Разные ширины у изображений.");
             if (btms[0].Height != btms[1].Height)
@@ -82,7 +82,7 @@ namespace Stegoanalysis
 
             return Tuple.Create(1, ImageHolder.Instance.GetChannels());*/
 
-            return Tuple.Create(layers[0] > layers[1] ? 1 : 2, ImageHolder.Instance.GetChannels());
+            return (layers[0] > layers[1] ? 1 : 2, ImageHolder.Instance.GetChannels());
         }
 
 
@@ -276,7 +276,7 @@ namespace Stegoanalysis
 
         private List<double> GetHistogram(Bitmap image, int channel)
         {
-            List<double> hist = new List<double>(new double[256]);
+            var hist = new List<double>(new double[256]);
             
             for (int i = 0; i < image.Width; i++)
             {

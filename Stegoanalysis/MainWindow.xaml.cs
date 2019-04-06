@@ -21,9 +21,9 @@ namespace Stegoanalysis
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string[] types = {"в 1", "во 2"};
-        private bool first = false;
-        private bool second = false;
+        private readonly string[] _types = {"в 1", "во 2"};
+        private bool _first = false;
+        private bool _second = false;
 
         private void SetAnsName(int image)
         {
@@ -33,7 +33,7 @@ namespace Stegoanalysis
                 else
                     image--;
                 
-            AnsTB.Text = $"Информация зашита {types[image - 1]} изображении - {(image == 1 ? SelectFirstLink.Content.ToString() : SelectSecondLink.Content.ToString())}.";
+            AnsTB.Text = $"Информация зашита {_types[image - 1]} изображении - {(image == 1 ? SelectFirstLink.Content.ToString() : SelectSecondLink.Content.ToString())}.";
         }
 
         public MainWindow()
@@ -43,9 +43,8 @@ namespace Stegoanalysis
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var t = Analyzer.Instance.Analyze(WidthTB.Text, HeightTB.Text, AlphaTB.Text);
-            SetAnsName(t.Item1);
-            var images = t.Item2;
+            (int number, var images) = Analyzer.Instance.Analyze(WidthTB.Text, HeightTB.Text, AlphaTB.Text);
+            SetAnsName(number);
             FirstImageR.Source = images[0];
             SecondImageR.Source = images[1];
             R.Visibility = Visibility.Visible;
@@ -91,9 +90,9 @@ namespace Stegoanalysis
 
             SelectFirstLink.Content = bi3.Item2;
 
-            if (second)
+            if (_second)
                 Go.IsEnabled = true;
-            first = true;
+            _first = true;
         }
 
         private void SelectSecondLink_Click(object sender, RoutedEventArgs e)
@@ -105,9 +104,9 @@ namespace Stegoanalysis
             ImageHolder.Instance.BitmapImage2Bitmap(bi3.Item1, false);
 
             SelectSecondLink.Content = bi3.Item2;
-            if (first)
+            if (_first)
                 Go.IsEnabled = true;
-            second = true;
+            _second = true;
         }
     }
 }
